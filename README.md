@@ -5,6 +5,15 @@
 <h1>osTicket - Prerequisites and Installation</h1>
 This tutorial outlines the prerequisites and installation of the open-source help desk ticketing system osTicket.<br />
 
+prereqs:
+1.HeidiSQL
+2. mysql
+3.osTicket.v1
+4.php
+5.phpmanager
+6.rewrite.amd
+7.VC_redist
+
 
 # 🧰 osTicket Installation on Azure VM
 
