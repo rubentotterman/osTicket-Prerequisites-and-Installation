@@ -18,8 +18,6 @@ This project walks through the installation of osTicket v1.15.8 on a Windows 10 
    - **OS:** Windows 10
    - **vCPUs:** 4
    - **VM Name:** `osticket-vm`
-   - **Username:** `labuser`
-   - **Password:** `osTicketPassword1!`
 
 2. **Remote Desktop into the VM**
 
@@ -28,7 +26,6 @@ This project walks through the installation of osTicket v1.15.8 on a Windows 10 
 ## 📁 File Setup
 
 1. Download `osTicket-Installation-Files.zip` onto the VM desktop and unzip it.
-2. The extracted folder should be called `osTicket-Installation-Files`.
 
 ---
 
@@ -38,7 +35,7 @@ This project walks through the installation of osTicket v1.15.8 on a Windows 10 
    - Go to *Windows Features* > `World Wide Web Services` > `Application Development Features`
    - Check `[X] CGI`
 
-2. **Install the following (from the extracted folder):**
+2. **Install the following:**
    - PHP Manager for IIS (`PHPManagerForIIS_V1.5.0.msi`)
    - IIS Rewrite Module (`rewrite_amd64_en-US.msi`)
 
