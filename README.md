@@ -133,8 +133,10 @@ This project walks through the installation of osTicket v1.15.8 on a Windows 10 
 ![Step 1 - IIS config](screenshots/Capture.PNG)
 ![Step 2 - osTicket extensions](screenshots/sdasdasdasd.PNG)
 ![Step 3 - extensions](screenshots/sgsdfsdfsd.PNG)
-![Step 4 - extensions](screenshots/sgsdfsdfsd.PNG)
-![Step 5 - osTicket installed](screenshots/DFSFSDF.PNG)
+![Step 3 - database setup](screenshots/CaptureASDADAD.PNG)
+![Step 4 - osTicket installed](screenshots/DFSFSDF.PNG)
+![Step 5 - osTicket adminPanel](screenshots/asdadadsad.PNG)
+
 
 </p>
 <br />
