@@ -128,10 +128,9 @@ This project walks through the installation of osTicket v1.15.8 on a Windows 10 
 
 ## 📸 Screenshots
 
-(Add your screenshots like below)
 
-```markdown
-![Step 1 - VM Setup](screenshots/vm-setup.png)
+markdown
+![Step 1 - IIS config](screenshots/capture.png)
 ![Step 2 - IIS Configuration](screenshots/iis-cgi.png)
 ![Step 3 - osTicket Installed](screenshots/osticket-installed.png)
 
