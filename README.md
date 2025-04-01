@@ -125,14 +125,6 @@ This project walks through the installation of osTicket v1.15.8 on a Windows 10 
 - Admin Login: `http://localhost/osTicket/scp/login.php`
 - User URL: `http://localhost/osTicket/`
 
----
-
-## 🧹 Post-Install Cleanup
-
-1. Delete: `C:\inetpub\wwwroot\osTicket\setup`
-2. Set `ost-config.php` permissions to **Read Only**
-
----
 
 ## 📸 Screenshots
 
