@@ -6,38 +6,142 @@
 This tutorial outlines the prerequisites and installation of the open-source help desk ticketing system osTicket.<br />
 
 
-<h2>Environments and Technologies Used</h2>
+# 🧰 osTicket Installation on Azure VM
 
-- Microsoft Azure (Virtual Machines/Compute)
-- Remote Desktop
-- Internet Information Services (IIS)
+This project walks through the installation of osTicket v1.15.8 on a Windows 10 Azure Virtual Machine.
 
-<h2>Operating Systems Used </h2>
+---
 
-- Windows 10</b> (21H2)
+## 💻 VM Setup
 
-<h2>List of Prerequisites</h2>
+1. **Create Azure VM**
+   - **OS:** Windows 10
+   - **vCPUs:** 4
+   - **VM Name:** `osticket-vm`
+   - **Username:** `labuser`
+   - **Password:** `osTicketPassword1!`
 
-- Item 1
-- Item 2
-- Item 3
-- Item 4
-- Item 5
+2. **Remote Desktop into the VM**
 
-<h2>Installation Steps</h2>
+---
 
-<p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
-<p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-</p>
-<br />
+## 📁 File Setup
 
-<p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
-<p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+1. Download `osTicket-Installation-Files.zip` onto the VM desktop and unzip it.
+2. The extracted folder should be called `osTicket-Installation-Files`.
+
+---
+
+## 🌐 IIS & PHP Configuration
+
+1. **Enable IIS with CGI:**
+   - Go to *Windows Features* > `World Wide Web Services` > `Application Development Features`
+   - Check `[X] CGI`
+
+2. **Install the following (from the extracted folder):**
+   - PHP Manager for IIS (`PHPManagerForIIS_V1.5.0.msi`)
+   - IIS Rewrite Module (`rewrite_amd64_en-US.msi`)
+
+3. **Setup PHP:**
+   - Create folder `C:\PHP`
+   - Unzip `php-7.3.8-nts-Win32-VC15-x86.zip` into `C:\PHP`
+   - Install `VC_redist.x86.exe`
+
+4. **Install MySQL:**
+   - Use `mysql-5.5.62-win32.msi`
+   - Setup: Typical
+   - Username: `root`
+   - Password: `root`
+
+---
+
+## 🛠️ Configuring IIS for PHP
+
+1. Open **IIS as Admin**
+2. Register PHP in PHP Manager:
+   - Path: `C:\PHP\php-cgi.exe`
+3. Reload IIS (Stop and Start server)
+
+---
+
+## 🧷 Install osTicket
+
+1. Unzip `osTicket-v1.15.8.zip`
+2. Copy the `upload` folder into: `C:\inetpub\wwwroot`
+3. Rename `upload` to `osTicket`
+
+4. Reload IIS and navigate:
+   - Sites → Default → `osTicket`
+   - Click: **Browse *:80**
+
+---
+
+## 🔌 Enable PHP Extensions
+
+1. IIS → Sites → Default → `osTicket` → PHP Manager
+2. Enable:
+   - `php_imap.dll`
+   - `php_intl.dll`
+   - `php_opcache.dll`
+3. Refresh the browser
+
+---
+
+## 🔐 Configure osTicket
+
+1. **Rename Config File:**
+   - From: `ost-sampleconfig.php`
+   - To: `ost-config.php`
+
+2. **Set Permissions:**
+   - Disable inheritance
+   - Remove all
+   - Add `Everyone` → Full Control
+
+3. In browser:
+   - Set Helpdesk Name
+   - Set Default Email
+
+---
+
+## 🧮 Setup Database
+
+1. Install `HeidiSQL`
+2. Create a new session:
+   - User: `root`
+   - Pass: `root`
+3. Create Database: `osTicket`
+
+4. In browser:
+   - MySQL Database: `osTicket`
+   - MySQL User: `root`
+   - MySQL Password: `root`
+   - Click: **Install Now**
+
+---
+
+## 🥳 Done!
+
+- Admin Login: `http://localhost/osTicket/scp/login.php`
+- User URL: `http://localhost/osTicket/`
+
+---
+
+## 🧹 Post-Install Cleanup
+
+1. Delete: `C:\inetpub\wwwroot\osTicket\setup`
+2. Set `ost-config.php` permissions to **Read Only**
+
+---
+
+## 📸 Screenshots
+
+(Add your screenshots like below)
+
+```markdown
+![Step 1 - VM Setup](screenshots/vm-setup.png)
+![Step 2 - IIS Configuration](screenshots/iis-cgi.png)
+![Step 3 - osTicket Installed](screenshots/osticket-installed.png)
+
 </p>
 <br />
