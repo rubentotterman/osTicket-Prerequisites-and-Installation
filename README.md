@@ -2,134 +2,192 @@
 <img src="https://i.imgur.com/Clzj7Xs.png" alt="osTicket logo"/>
 </p>
 
-<h1>osTicket - Prerequisites and Installation</h1>
-This tutorial outlines the prerequisites and installation of the open-source help desk ticketing system osTicket.<br />
+osTicket Deployment on Azure VM
+Deploying and configuring the open-source help desk ticketing system osTicket v1.15.8 on a Windows 10 Azure Virtual Machine.
 
-prereqs:
-1.HeidiSQL
-2. mysql
-3.osTicket.v1
-4.php
-5.phpmanager
-6.rewrite.amd
-7.VC_redist
+Overview
+This project focuses on the end-to-end installation of osTicket, including setting up the web server (IIS), configuring PHP and MySQL, and preparing the ticketing system for use. It simulates a real-world IT support environment deployment.
 
+Skills and Technologies Used
+Microsoft Azure (VM provisioning)
 
-osTicket Installation on Azure VM
+Windows 10 (Server configuration)
 
-This project walks through the installation of osTicket v1.15.8 on a Windows 10 Azure Virtual Machine.
+IIS Web Server
 
----
+PHP 7.3
 
- VM Setup
+MySQL 5.5
 
-1. Create Azure VM
-   - OS: Windows 10
-   - vCPUs: 4
-   - VM Name: `osticket-vm`
+HeidiSQL
 
-2. **Remote Desktop into the VM**
+osTicket v1.15.8
 
----
+Basic Networking (Remote Desktop Protocol)
 
-File Setup
+Prerequisites
+Azure account with VM provisioning access
 
-1. Download `osTicket-Installation-Files.zip` onto the VM desktop and unzip it.
+Software installed on the VM:
 
----
+HeidiSQL
 
-IIS & PHP Configuration
+MySQL 5.5
 
-1. Enable IIS with CGI:
-   - Go to Windows Features > `World Wide Web Services` > `Application Development Features`
-   - Check `[X] CGI`
+PHP 7.3
 
-2. Install the following:
-   - PHP Manager for IIS (`PHPManagerForIIS_V1.5.0.msi`)
-   - IIS Rewrite Module (`rewrite_amd64_en-US.msi`)
+PHP Manager for IIS
 
-3. Setup PHP:
-   - Create folder `C:\PHP`
-   - Unzip `php-7.3.8-nts-Win32-VC15-x86.zip` into `C:\PHP`
-   - Install `VC_redist.x86.exe`
+IIS Rewrite Module
 
-4. Install MySQL:
-   - Use `mysql-5.5.62-win32.msi`
-   - Setup: Typical
-   - Username: `root`
-   - Password: `root`
+Visual C++ Redistributable (VC_redist)
 
----
+Setup and Installation
+1. Virtual Machine Setup
+Create a Windows 10 VM in Azure:
 
-Configuring IIS for PHP
+OS: Windows 10
 
-1. Open IIS as Admin
-2. Register PHP in PHP Manager:
-   - Path: `C:\PHP\php-cgi.exe`
-3. Reload IIS (Stop and Start server)
+vCPUs: 4
 
----
+VM Name: osticket-vm
 
-Install osTicket
+Connect to the VM using Remote Desktop (RDP).
 
-1. Unzip `osTicket-v1.15.8.zip`
-2. Copy the `upload` folder into: `C:\inetpub\wwwroot`
-3. Rename `upload` to `osTicket`
+2. File Preparation
+Download osTicket-Installation-Files.zip onto the VM desktop.
 
-4. Reload IIS and navigate:
-   - Sites → Default → `osTicket`
-   - Click: **Browse *:80**
+Unzip all contents.
 
----
+3. IIS & PHP Configuration
+Enable IIS with CGI support:
 
-Enable PHP Extensions
+Windows Features > World Wide Web Services > Application Development Features
 
-1. IIS → Sites → Default → `osTicket` → PHP Manager
-2. Enable:
-   - `php_imap.dll`
-   - `php_intl.dll`
-   - `php_opcache.dll`
-3. Refresh the browser
+Enable CGI.
 
----
+Install Required Software:
 
-Configure osTicket
+PHP Manager for IIS (PHPManagerForIIS_V1.5.0.msi)
 
-1. Rename Config File:
-   - From: `ost-sampleconfig.php`
-   - To: `ost-config.php`
+IIS Rewrite Module (rewrite_amd64_en-US.msi)
 
-2. Set Permissions:
-   - Disable inheritance
-   - Remove all
-   - Add `Everyone` → Full Control
+Visual C++ Redistributable (VC_redist.x86.exe)
 
-3. In browser:
-   - Set Helpdesk Name
-   - Set Default Email
+Setup PHP:
 
----
+Create directory: C:\PHP
 
-Setup Database
+Unzip php-7.3.8-nts-Win32-VC15-x86.zip into C:\PHP.
 
-1. Install `HeidiSQL`
-2. Create a new session:
-   - User: `root`
-   - Pass: `root`
-3. Create Database: `osTicket`
+Register PHP in IIS via PHP Manager:
 
-4. In browser:
-   - MySQL Database: `osTicket`
-   - MySQL User: `root`
-   - MySQL Password: `root`
-   - Click: **Install Now**
+Path: C:\PHP\php-cgi.exe
 
----
+Restart IIS (Stop and Start).
 
-Done!
+4. Install MySQL
+Install using mysql-5.5.62-win32.msi
 
-- Admin Login: `http://localhost/osTicket/scp/login.php`
-- User URL: `http://localhost/osTicket/`
+Setup type: Typical
+
+Credentials:
+
+Username: root
+
+Password: root
+
+5. osTicket Installation
+Unzip osTicket-v1.15.8.zip.
+
+Copy the upload folder into C:\inetpub\wwwroot.
+
+Rename upload to osTicket.
+
+Reload IIS:
+
+Navigate: Sites → Default → osTicket
+
+Browse to site (:80 port).
+
+6. Enable PHP Extensions
+In IIS:
+
+Sites → Default → osTicket → PHP Manager
+
+Enable the following extensions:
+
+php_imap.dll
+
+php_intl.dll
+
+php_opcache.dll
+
+Refresh the browser to load changes.
+
+7. Configure osTicket
+Rename Config File:
+
+Rename: ost-sampleconfig.php → ost-config.php
+
+Set Permissions:
+
+Disable inheritance
+
+Remove all existing permissions
+
+Add Everyone with Full Control access
+
+In the browser:
+
+Set up Helpdesk Name
+
+Set Default Email
+
+8. Database Setup
+Install HeidiSQL:
+
+Create a new session:
+
+User: root
+
+Password: root
+
+Create Database:
+
+Database Name: osTicket
+
+Finalize Setup in Browser:
+
+MySQL Database: osTicket
+
+MySQL User: root
+
+MySQL Password: root
+
+Click "Install Now".
+
+Access URLs
+Admin Panel: http://localhost/osTicket/scp/login.php
+
+User Portal: http://localhost/osTicket/
+
+What I Learned
+Setting up a basic IIS web server environment.
+
+Managing PHP extensions and IIS modules.
+
+Integrating multiple components (IIS, PHP, MySQL, osTicket) into a working help desk platform.
+
+Practical experience in cloud VM setup, remote management, and troubleshooting server configurations.
+
+Future Improvements
+Migrate deployment to Linux server environment (Apache + MySQL + PHP stack).
+
+Secure osTicket installation with HTTPS.
+
+Set up email piping and auto-responses for ticket notifications.
+
 
 
 ## 📸 Screenshots
